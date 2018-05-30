@@ -13,5 +13,9 @@ import * as firebase from 'firebase/app';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  users: FirebaseListObservable<any[]>;
+
+  constructor(public af: AngularFireDatabase) {
+    this.users = this.af.list('/users');
+  }
 }
