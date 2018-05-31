@@ -19,16 +19,34 @@ import { OnInit } from '@angular/core';
 
 export class AppComponent implements OnInit {
   users: User[];
+  genders: Gender[];
+
 
   constructor(private _firebaseService: FirebaseService) {
 
   }
 
   ngOnInit() {
+
     this._firebaseService.getUsers().subscribe(users => {
       this.users = users;
     });
+
+    this._firebaseService.getGenders().subscribe(genders => {
+      this.genders = genders;
+    });
   }
+
+  filterGender(gender) {
+    this._firebaseService.getUsers(gender).subscribe(users => {
+      this.users = users;
+    })
+  }
+
+  like(e) {
+    console.log('LIKE');
+  }
+
 }
 
 // define Types
@@ -39,7 +57,11 @@ export interface User {
   surname: string;
   myPhoto: string;
   age: number;
-  gender: string;
   inRelation: boolean;
   likes: number;
+}
+
+export interface Gender {
+  $key?: string;
+  sex: string;
 }
