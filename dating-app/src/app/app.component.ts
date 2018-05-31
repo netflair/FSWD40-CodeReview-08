@@ -7,15 +7,39 @@ import { AngularFireAuth} from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 
+import { FirebaseService } from './services/firebase.services';
+import { OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [FirebaseService]
 })
-export class AppComponent {
-  users: FirebaseListObservable<any[]>;
 
-  constructor(public af: AngularFireDatabase) {
-    this.users = this.af.list('/users');
+export class AppComponent implements OnInit {
+  users: User[];
+
+  constructor(private _firebaseService: FirebaseService) {
+
   }
+
+  ngOnInit() {
+    this._firebaseService.getUsers().subscribe(users => {
+      this.users = users;
+    });
+  }
+}
+
+// define Types
+export interface User {
+  $key?: string;
+  sex: string;
+  name: string;
+  surname: string;
+  myPhoto: string;
+  age: number;
+  gender: string;
+  inRelation: boolean;
+  likes: number;
 }
