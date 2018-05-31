@@ -6,8 +6,8 @@
     <div class="col-12">
         <div class="col-lg-12">
           <label>Filter Gender
-            <select class="selectpicker show-tick" data-style="btn-primary" (change)="filterGender(filteredGender.value)" #filteredGender>
-                <option class="dropdown-item" value="all">all</option>
+            <select class="form-control" (change)="filterGender(filteredGender.value)" #filteredGender>
+                <option value="all">all</option>
                 <option *ngFor="let gender of genders" value="{{gender.sex}}">
                   {{gender.sex}}
                 </option>      
