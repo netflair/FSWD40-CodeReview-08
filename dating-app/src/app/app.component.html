@@ -22,7 +22,7 @@
         <div class="media-body col-lg-12 col-md-6">
           <h5 class="mt-0"> {{user.name}} {{user.surname}} </h5>
           <strong>Age: </strong> {{user.age}} <br>
-          User is currently <p *ngIf="user.rel; else single">in a relation.</p>
+          {{user.name}} is currently <p *ngIf="user.rel; else single">in a relation.</p>
           <ng-template #single><p>single.</p></ng-template>
           <button (click)="like(e)" type="button" class="like btn btn-primary">Like</button>{{user.likes}}
         </div>
