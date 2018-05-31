@@ -1,11 +1,14 @@
-import {Injectable} from '@angular/core';
+/* tslint:disable */
+import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
-import { all } from 'q';
+import * as firebase from 'firebase';
+import { database } from 'firebase/app';
+
 
 @Injectable()
 
-// create class
+// FirebaseService class needed for interaction with the firebase DB
 export class FirebaseService {
     users: FirebaseListObservable<User[]>;
     genders: FirebaseListObservable<Gender[]>;
@@ -13,19 +16,23 @@ export class FirebaseService {
     constructor(private af: AngularFireDatabase) {
 
     }
-
-    // get users from firebase db
+    // Display users and filter them
     getUsers(gender: string = null) {
+        // Needed to display 'all' again on dropdown selection
         if (gender === 'all') {
             this.users = this.af.list('/users') as FirebaseListObservable<User[]>;
-        }else if (gender != null) {
+        }
+        // Order output when dropdown is not on default anymore
+        else if (gender != null) {
             this.users = this.af.list('/users', {
                 query: {
                     orderByChild: 'gender',
                     equalTo: gender
                 }
             }) as FirebaseListObservable<User[]>;
-        }else {
+        }
+        // Needed to display all on load
+        else {
             this.users = this.af.list('/users') as FirebaseListObservable<User[]>;
         }
         return this.users;
@@ -35,6 +42,9 @@ export class FirebaseService {
         this.genders = this.af.list('/genders') as FirebaseListObservable<Gender[]>;
         return this.genders;
     }
+    
+
+
 }
 
 // define Types
