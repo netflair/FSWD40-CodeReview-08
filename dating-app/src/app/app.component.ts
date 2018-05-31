@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   filterGender(gender) {
     this._firebaseService.getUsers(gender).subscribe(users => {
       this.users = users;
-    })
+    });
   }
 
   like(e) {
