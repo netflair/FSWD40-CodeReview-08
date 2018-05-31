@@ -1,6 +1,18 @@
 <div class="container">
   <h1 class="text-center">Users</h1>
+
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-3" *ngFor="let user of users">
+    <div class="media row no-gutters">
+        <img class="mr-3 col-lg-12 col-md-6 img-resonsive center-block" src="{{user.myPhoto}}" alt="{{user.name}}-image">
+        <div class="media-body col-lg-12 col-md-6">
+          <h5 class="mt-0"> {{user.name}} {{user.surname}} </h5>
+          <strong>Age: </strong> {{user.age}} <br>
+          User is currently <p *ngIf="user.rel; else single">in a relation.</p>
+          <ng-template #single><p>single.</p></ng-template>
+        </div>
+      </div>
+  </div>
 </div>
-<div class="row" *ngFor="let user of users | async">
-  <div class="col-sm-4">{{user}}</div>
+
 </div>
