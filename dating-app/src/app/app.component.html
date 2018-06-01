@@ -24,7 +24,7 @@
           <strong>Age: </strong> {{user.age}} <br>
           {{user.name}} is currently <p *ngIf="user.rel; else single">in a relation.</p>
           <ng-template #single><p>single.</p></ng-template>
-          <button (click)="like(e)" type="button" class="like btn btn-primary">Like</button>{{user.likes}}
+          <button (click)="addLike(user.$key, user.likes)" type="button" class="like btn btn-primary">Like</button>{{user.likes}}
         </div>
       </div>
   </div>

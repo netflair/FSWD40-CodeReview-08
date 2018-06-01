@@ -43,8 +43,9 @@ export class AppComponent implements OnInit {
     });
   }
 
-  like(userToIncrementLike) {
-    console.log('LIKE');
+  addLike(UserId, likeValue) {
+    likeValue += 1;
+    this._firebaseService.increment(UserId, likeValue);
   }
 
 

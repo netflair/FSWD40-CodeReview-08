@@ -2,8 +2,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import 'rxjs/add/operator/map';
-import * as firebase from 'firebase';
-import { database } from 'firebase/app';
 
 
 @Injectable()
@@ -12,6 +10,7 @@ import { database } from 'firebase/app';
 export class FirebaseService {
     users: FirebaseListObservable<User[]>;
     genders: FirebaseListObservable<Gender[]>;
+
 
     constructor(private af: AngularFireDatabase) {
 
@@ -42,11 +41,15 @@ export class FirebaseService {
         this.genders = this.af.list('/genders') as FirebaseListObservable<Gender[]>;
         return this.genders;
     }
-    
 
+
+    increment(UserId, likeValue): void {
+
+        this.af.object('/users/' + UserId).update({likes: likeValue});
+
+    }
 
 }
-
 // define Types
 export interface User {
     $key?: string;
