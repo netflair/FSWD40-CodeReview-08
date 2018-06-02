@@ -42,11 +42,9 @@ export class FirebaseService {
         return this.genders;
     }
 
-
+    // update Onject like value
     increment(UserId, likeValue): void {
-
         this.af.object('/users/' + UserId).update({likes: likeValue});
-
     }
 
 }
