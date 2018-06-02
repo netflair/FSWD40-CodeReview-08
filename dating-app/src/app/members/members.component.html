@@ -10,7 +10,7 @@
           <div *ngFor="let user of users">
             <div *ngIf="user.$key == activeKey" class="row">
               <div class="col-sm-3">
-                <img class="img-fluid imgProfile" src="{{user.img}}" alt="{{user.name}}-Image">
+                <img class="img-fluid imgProfile" src=".{{user.img}}" alt="{{user.name}}-Image">
               </div>
               <div class="col-sm-9">
                 <h5 (click)="changeState('extend', user.$key)" class="mt-0"> {{user.name}} {{user.surname}} </h5>
@@ -52,7 +52,7 @@
     <!--Members-->
     <div class="col-sm-12 col-md-6 col-lg-3" *ngFor="let user of users">
       <div class="media row no-gutters">
-        <img class="mr-3 col-lg-12 col-md-6 img-resonsive center-block" src="{{user.img}}" alt="{{user.name}}-image">
+        <img class="mr-3 col-lg-12 col-md-6 img-resonsive center-block" src=".{{user.img}}" alt="{{user.name}}-image">
         <div class="media-body col-lg-12 col-md-6">
           <h5 (click)="changeState('extend', user.$key)" class="mt-0"> {{user.name}} {{user.surname}} </h5>
           <strong>Age: </strong> {{user.age}}
